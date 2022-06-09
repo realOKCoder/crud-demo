@@ -17,8 +17,6 @@ MongoClient.connect(connectionString)
         app.use(bodyParser.urlencoded({extended: true}))
         app.use(express.static('public'))
         app.use(bodyParser.json())
-
-        app.listen(process.env.PORT || 3000)
         
         app.get('/', (req, res) => {
             quotesCollection.find().toArray()
@@ -72,3 +70,4 @@ MongoClient.connect(connectionString)
 
 
     .catch(error => console.error(error))
+    app.listen(process.env.PORT || 3000)
