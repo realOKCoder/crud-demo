@@ -22,19 +22,19 @@ MongoClient.connect(connectionString)
                 console.log('listening on 3000')
         })
         
-        app.post('/quotes', (req, res) => {
-            quotesCollection.insertOne(req.body)
-                .then(result => {
-                    res.redirect('/')
-                })
-                .catch(error => console.error(error))
-        })
-
         app.get('/', (req, res) => {
             quotesCollection.find().toArray()
             .then(results => {
                 res.render('index.ejs', {quotes: results})
                 console.log(results)
+                })
+                .catch(error => console.error(error))
+        })
+
+        app.post('/quotes', (req, res) => {
+            quotesCollection.insertOne(req.body)
+                .then(result => {
+                    res.redirect('/')
                 })
                 .catch(error => console.error(error))
         })
