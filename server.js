@@ -1,5 +1,6 @@
 console.log('May Node be with you')
 
+const PORT = 3000
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
@@ -17,7 +18,7 @@ MongoClient.connect(connectionString)
         app.use(express.static('public'))
         app.use(bodyParser.json())
 
-        app.listen(3000, () => {
+        app.listen(process.env.PORT || PORT, () => {
                 console.log('listening on 3000')
         })
         
