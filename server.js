@@ -18,9 +18,7 @@ MongoClient.connect(connectionString)
         app.use(express.static('public'))
         app.use(bodyParser.json())
 
-        app.listen(process.env.PORT, () => {
-                console.log('listening on 3000')
-        })
+        app.listen(process.env.PORT || 3000)
         
         app.get('/', (req, res) => {
             quotesCollection.find().toArray()
